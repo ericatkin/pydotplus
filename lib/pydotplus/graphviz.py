@@ -1637,13 +1637,7 @@ class Graph(Common):
         for sg in self.obj_dict['subgraphs'].values():
             sgraph_obj_dicts.extend(sg)
 
-        obj_list = sorted([
-            (obj['sequence'], obj)
-            for obj
-            in (edge_obj_dicts + node_obj_dicts + sgraph_obj_dicts)
-        ])
-
-        for idx, obj in obj_list:
+        for obj in sorted(edge_obj_dicts + node_obj_dicts + sgraph_obj_dicts, key=lambda x: x['sequence']):
             if obj['type'] == 'node':
                 node = Node(obj_dict=obj)
 
